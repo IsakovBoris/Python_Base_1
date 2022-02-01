@@ -1,0 +1,108 @@
+1. Проверяем версию python, pip и создаем папку для виртуальной среды
+
+Boris@MacBook-Pro-Isakov ~ % python -V
+Python 3.10.1
+Boris@MacBook-Pro-Isakov ~ % cd Documents
+Boris@MacBook-Pro-Isakov Documents % cd Code
+Boris@MacBook-Pro-Isakov Code % ls
+Git				Repo2
+IMG_1685.jpg			project
+Java Script			project-gui
+Python_Base_1-			Шпаргалки Python
+Repo1
+Boris@MacBook-Pro-Isakov Code % cd Python_Base_1-
+Boris@MacBook-Pro-Isakov Python_Base_1- % ls   
+Isakov_Boris_dz_1	LICENSE
+Isakov_Boris_dz_2	README.md
+Boris@MacBook-Pro-Isakov Python_Base_1- % mkdir Isakov_Boris_dz_4
+Boris@MacBook-Pro-Isakov Python_Base_1- % cd Isakov_Boris_dz_4
+Boris@MacBook-Pro-Isakov Isakov_Boris_dz_4 % mkdir Virtual_machine
+Boris@MacBook-Pro-Isakov Isakov_Boris_dz_4 % cd Virtual_machine
+Boris@MacBook-Pro-Isakov Virtual_machine % pip3 -V
+pip 21.3.1 from /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/pip (python 3.10)
+
+2. Проверяем установленные пакеты в глобальном окружении
+
+
+Boris@MacBook-Pro-Isakov Virtual_machine % pip3 freeze
+asgiref==3.5.0
+certifi==2021.10.8
+charset-normalizer==2.0.10
+Django==4.0.1
+idna==3.3
+Pillow==9.0.0
+pyserial==3.5
+sqlparse==0.4.2
+urllib3==1.26.8
+
+3. Устанавливаем актуальный пакет requests в глобальном окружении 
+
+
+Boris@MacBook-Pro-Isakov Virtual_machine % pip3 install requests
+Collecting requests
+  Using cached requests-2.27.1-py2.py3-none-any.whl (63 kB)
+Requirement already satisfied: charset-normalizer~=2.0.0 in /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages (from requests) (2.0.10)
+Requirement already satisfied: urllib3<1.27,>=1.21.1 in /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages (from requests) (1.26.8)
+Requirement already satisfied: certifi>=2017.4.17 in /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages (from requests) (2021.10.8)
+Requirement already satisfied: idna<4,>=2.5 in /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages (from requests) (3.3)
+Installing collected packages: requests
+Successfully installed requests-2.27.1
+
+4. Создаем виртуальное окружение, активируем его, проверяем наличие пакетов и устанавливаем отличную версию requests от глобальной версии
+
+
+Boris@MacBook-Pro-Isakov Virtual_machine % python -m venv virt
+Boris@MacBook-Pro-Isakov Virtual_machine % source virt/bin/activate
+(virt) Boris@MacBook-Pro-Isakov Virtual_machine % pip freeze
+(virt) Boris@MacBook-Pro-Isakov Virtual_machine % pip install requests==2.25.1
+Collecting requests==2.25.1
+  Downloading requests-2.25.1-py2.py3-none-any.whl (61 kB)
+     |████████████████████████████████| 61 kB 1.3 MB/s 
+Collecting urllib3<1.27,>=1.21.1
+  Using cached urllib3-1.26.8-py2.py3-none-any.whl (138 kB)
+Collecting certifi>=2017.4.17
+  Using cached certifi-2021.10.8-py2.py3-none-any.whl (149 kB)
+Collecting idna<3,>=2.5
+  Downloading idna-2.10-py2.py3-none-any.whl (58 kB)
+     |████████████████████████████████| 58 kB 3.6 MB/s 
+Collecting chardet<5,>=3.0.2
+  Downloading chardet-4.0.0-py2.py3-none-any.whl (178 kB)
+     |████████████████████████████████| 178 kB 4.8 MB/s 
+Installing collected packages: urllib3, idna, chardet, certifi, requests
+Successfully installed certifi-2021.10.8 chardet-4.0.0 idna-2.10 requests-2.25.1 urllib3-1.26.8
+WARNING: You are using pip version 21.2.4; however, version 21.3.1 is available.
+You should consider upgrading via the '/Users/Boris/Documents/Code/Python_Base_1-/Isakov_Boris_dz_4/Virtual_machine/virt/bin/python3 -m pip install --upgrade pip' command.
+
+5. Проверяем версию requests установленную в виртуальном окружении
+
+
+(virt) Boris@MacBook-Pro-Isakov Virtual_machine % pip show requests
+Name: requests
+Version: 2.25.1
+Summary: Python HTTP for Humans.
+Home-page: https://requests.readthedocs.io
+Author: Kenneth Reitz
+Author-email: me@kennethreitz.org
+License: Apache 2.0
+Location: /Users/Boris/Documents/Code/Python_Base_1-/Isakov_Boris_dz_4/Virtual_machine/virt/lib/python3.10/site-packages
+Requires: idna, certifi, chardet, urllib3
+Required-by: 
+
+6. Деактивируем виртуальное окружение и еще раз сверяем requests в глобальном окружении
+
+
+(virt) Boris@MacBook-Pro-Isakov Virtual_machine % deactivate
+Boris@MacBook-Pro-Isakov Virtual_machine % pip3 show requests
+Name: requests
+Version: 2.27.1
+Summary: Python HTTP for Humans.
+Home-page: https://requests.readthedocs.io
+Author: Kenneth Reitz
+Author-email: me@kennethreitz.org
+License: Apache 2.0
+Location: /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages
+Requires: certifi, charset-normalizer, idna, urllib3
+Required-by: 
+Boris@MacBook-Pro-Isakov Virtual_machine % 
+
+P.S. Пакет Pillow версии меньше 9.0.0 не установился из за версии языка python, поэтому пришлось пойти по тому же пути только с пакетом requests =(
