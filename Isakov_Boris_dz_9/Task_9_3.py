@@ -1,5 +1,6 @@
 class Worker:
 
+
     def __init__(self, name: str, surname: str, position: str, income: dict):
         self.name = name.capitalize()
         self.surname = surname.capitalize()
@@ -9,9 +10,11 @@ class Worker:
 
 class Position(Worker):
 
+
     def get_full_name(self) -> str:
         """Возвращает строку по формату 'Имя Фамилия'"""
         return f'{self.name} {self.surname}'
+
 
     def get_total_income(self) -> int:
         result = 0

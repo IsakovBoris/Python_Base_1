@@ -65,6 +65,8 @@ class Car:
 
 
 class TownCar(Car):
+
+
     def show_speed(self) -> None:
         if self.speed > 60:
             sys.stdout.write(f'Alarm!!! Speed!!!\n')
@@ -73,6 +75,8 @@ class TownCar(Car):
 
 
 class WorkCar(Car):
+
+
     def show_speed(self) -> None:
         if self.speed > 40:
             sys.stdout.write(f'Alarm!!! Speed!!!\n')

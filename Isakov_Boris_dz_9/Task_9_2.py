@@ -1,4 +1,6 @@
 class Road:
+
+
     def __init__(self, length: int, width: int):
         """конструктор класса
         :param length: длинна в метрах
@@ -6,6 +8,7 @@ class Road:
         """
         self._length = length
         self._width = width
+
 
     def calculate(self, hight: int = 5, mass_m_2: int = 25) -> int:
         """
@@ -16,6 +19,7 @@ class Road:
         """
         square = self._length * self._width * hight * mass_m_2 // 1000
         return square
+
 
 if __name__ == '__main__':
     road = Road(5000, 20)
